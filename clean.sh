@@ -5,7 +5,7 @@ cleanup_build_files() {
         if [ -d "$file" ]; then
             # Рекурсивно вызываем функцию для каждой поддиректории
             cleanup_build_files "$file"
-        elif [[ $file == *.aux || $file == *.log || $file == *.out || $file == *.toc || $file == *.fdb_latexmk || $file == *.fls ]]; then
+        elif [[ $file == *.aux || $file == *.log || $file == *.out || $file == *.toc || $file == *.fdb_latexmk || $file == *.fls || $file == *.bbl || $file == *.blg ]]; then
             # Удаляем файлы с расширениями .aux, .log, .out и .toc
             rm "$file"
         fi

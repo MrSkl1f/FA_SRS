@@ -15,7 +15,17 @@ collect_main_files() {
             cd "$dir_path" || exit
 
             rm "main.pdf"
+            rm -f "main.bbl"
+            rm -f "main.blg"
+
             # Вызываем команду сборки LaTeX с xelatex и опцией -shell-escape
+            xelatex -shell-escape -interaction=nonstopmode "$main_file"
+
+            # Вызываем команду bibtex для обработки библиографии
+            bibtex "main"
+
+            # Повторно вызываем команду сборки LaTeX для включения списка литературы
+            xelatex -shell-escape -interaction=nonstopmode "$main_file"
             xelatex -shell-escape -interaction=nonstopmode "$main_file"
 
             # Возвращаемся в исходную директорию
